@@ -10,6 +10,16 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/diogo", (req, res) => {
+  res.json({
+    hello: "diogo"
+  });
+});
+
+router.get("*", (req, res) => {
+  res.status(404).send("404 not found");
+});
+
 app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
