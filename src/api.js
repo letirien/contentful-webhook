@@ -20,7 +20,7 @@ router.get("*", (req, res) => {
   res.status(404).send("404 not found");
 });
 
-app.use(`/`, router);
+app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
