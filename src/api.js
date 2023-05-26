@@ -30,11 +30,16 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
   const hook  = req.body.hook;
 
   const object = { objectID, title, subtitle, hook/* autres champs */ };
-  if(req.body){
-    index.saveObject(object);
-    res.sendStatus(200)
-  }else{
-    res.sendStatus(500);
+  if (req.body) {
+    index.saveObject(object, (err, content) => {
+      if (err) {
+        console.error('Erreur lors de l\'indexation de l\'objet :', err);
+        res.sendStatus(500);
+      } else {
+        console.log('Objet indexé avec succès :', content);
+        res.sendStatus(200);
+      }
+    });
   }
 })
 
