@@ -5,7 +5,8 @@ const router = express.Router();
 
 const algoliasearch = require('algoliasearch');
 // const Contentful = require('contentful') 
-
+const algoliaApiKey = process.env.ALGOLIA_API_KEY;
+// const contentfulApiKey = process.env.CONTENTFUL_API_KEY;
 
 // const contentfulClient = clientContentFul
 // Créez une instance Algolia en utilisant votre identifiant et votre clé d'API
