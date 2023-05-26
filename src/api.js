@@ -14,17 +14,16 @@ const client = algoliasearch('X3LOXZO0EA', algoliaApiKey);
 
 // Spécifiez le nom de l'index dans lequel vous souhaitez indexer vos projets
 const index = client.initIndex('dev_JIBOIANA');
+const indexEvent = client.initIndex('dev_JiboianaEvent');
 router.get("/", (req, res) => {
   res.json({
-    hello: "hi!"
+    hello: "Welcome I use this small app as webhook handler"
   });
 });
 
 app.use(express.json())
-// post for projects
-router.post('/contentful-webhook/index/:data', (req, res)=>{
-  // const projet = req.body;
-  // Extrait les informations nécessaires du projet
+// index for projects
+router.post('/contentful-webhook/indexProject/:data', (req, res)=>{
   const objectID = req.body.id;
   const title  = req.body.title;
   const subtitle  = req.body.subtitle;
@@ -44,11 +43,27 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
   }
 })
 
-router.get("/diogo", (req, res) => {
-  res.json({
-    hello: "diogo"
-  });
-});
+//INDEX EVENT
+
+router.post('/contentful-webhook/indexEvent/:data', (req, res)=>{
+  const objectID = req.body.id;
+  const title  = req.body.title;
+  const richText  = req.body.richText;
+  const localisation  = req.body.localisation;
+
+  const object = { objectID: objectID, title, richText, localisation/* autres champs */ };
+  if (req.body) {
+    indexEvent.saveObject(object)
+      .then(content => {
+        console.log('Objet indexé avec succès :', content);
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        console.error('Erreur lors de l\'indexation de l\'objet :', err);
+        res.sendStatus(500);
+      });
+  }
+})
 
 router.get("*", (req, res) => {
   res.status(404).send("404 not found");
