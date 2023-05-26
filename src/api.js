@@ -33,7 +33,7 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
 
   const object = { objectID: objectID, title, subtitle, hook/* autres champs */ };
   if (req.body) {
-    res.json(object, data)
+    res.json(req.params.data)
     // index.saveObject(object)
     //   .then(content => {
     //     console.log('Objet indexé avec succès :', content);
