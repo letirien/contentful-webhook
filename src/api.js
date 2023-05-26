@@ -9,17 +9,13 @@ router.get("/", (req, res) => {
     hello: "hi!"
   });
 });
-router.post('/contentful-webhook/index/:id', (req, res)=>{
+router.post('/contentful-webhook/index/:data', (req, res)=>{
   const projet = req.body;
-  // Extrait les informations nécessaires du projet
-  const { sys, fields } = projet;
-  const { id } = sys;
-  const { title, /* autres champs */ } = fields;
-  // Mettez à jour ou ajoutez l'enregistrement correspondant dans l'index Algolia
-  const object = { objectID: id, title /* autres champs */ };
-  res.json({
-    index: object
-  })
+  if(req.body){
+    res.sendStatus(200);
+  }else{
+    res.sendStatus(500);
+  }
 })
 
 router.get("/diogo", (req, res) => {
