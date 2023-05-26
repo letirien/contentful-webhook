@@ -32,16 +32,15 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
 
   const object = { objectID: objectID, title, subtitle, hook/* autres champs */ };
   if (req.body) {
-    res.json(object)
-  //   index.saveObject(object)
-  //     .then(content => {
-  //       console.log('Objet indexé avec succès :', content);
-  //       res.sendStatus(200);
-  //     })
-  //     .catch(err => {
-  //       console.error('Erreur lors de l\'indexation de l\'objet :', err);
-  //       res.sendStatus(500);
-  //     });
+    index.saveObject(object)
+      .then(content => {
+        console.log('Objet indexé avec succès :', content);
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        console.error('Erreur lors de l\'indexation de l\'objet :', err);
+        res.sendStatus(500);
+      });
   }
 })
 
