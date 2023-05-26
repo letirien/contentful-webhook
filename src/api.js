@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     hello: "hi!"
   });
 });
-router.post('/contentful-webhook/index/:payload/:sys/:id', (req, res)=>{
+router.post('/contentful-webhook/index/:id', (req, res)=>{
   const projet = req.body;
   // Extrait les informations nécessaires du projet
   const { sys, fields } = projet;
