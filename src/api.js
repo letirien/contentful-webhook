@@ -9,12 +9,7 @@ router.get("/", (req, res) => {
     hello: "hi!"
   });
 });
-router.get("/contentful-webhook/index", (req, res) => {
-  res.json({
-    data: 'test'
-  });
-});
-router.post('/contentful-webhook/index', (req, res)=>{
+router.post('/contentful-webhook/index/:payload/:sys/:id', (req, res)=>{
   const projet = req.body;
   // Extrait les informations nécessaires du projet
   const { sys, fields } = projet;
