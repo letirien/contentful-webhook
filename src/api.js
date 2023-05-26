@@ -20,6 +20,7 @@ router.get("/", (req, res) => {
   });
 });
 
+app.use(express.json())
 // post for projects
 router.post('/contentful-webhook/index/:data', (req, res)=>{
 
