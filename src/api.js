@@ -29,7 +29,7 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
   const subtitle  = req.body.subtitle;
   const hook  = req.body.hook;
 
-  const object = { objectID, title, subtitle, hook/* autres champs */ };
+  const object = { objectID: objectID, title, subtitle, hook/* autres champs */ };
   if (req.body) {
     index.saveObject(object)
       .then(content => {
