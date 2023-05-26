@@ -4,8 +4,15 @@ const app = express();
 const router = express.Router();
 
 const algoliasearch = require('algoliasearch');
-const Contentful = require('contentful') 
+// const Contentful = require('contentful') 
 
+
+// const contentfulClient = clientContentFul
+// Créez une instance Algolia en utilisant votre identifiant et votre clé d'API
+const client = algoliasearch('X3LOXZO0EA', algoliaApiKey);
+
+// Spécifiez le nom de l'index dans lequel vous souhaitez indexer vos projets
+const index = client.initIndex('dev_JIBOIANA');
 router.get("/", (req, res) => {
   res.json({
     hello: "hi!"
