@@ -22,6 +22,8 @@ router.get("/", (req, res) => {
 
 // post for projects
 router.post('/contentful-webhook/index/:data', (req, res)=>{
+
+  const data = req.params.data;
   // const projet = req.body;
   // Extrait les informations nécessaires du projet
   const objectID = req.body.id;
@@ -31,7 +33,7 @@ router.post('/contentful-webhook/index/:data', (req, res)=>{
 
   const object = { objectID: objectID, title, subtitle, hook/* autres champs */ };
   if (req.body) {
-    res.json(object)
+    res.json(object, data)
     // index.saveObject(object)
     //   .then(content => {
     //     console.log('Objet indexé avec succès :', content);
