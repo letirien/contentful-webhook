@@ -45,13 +45,15 @@ router.post('/contentful-webhook/indexProject/:data', (req, res)=>{
 
 //INDEX EVENT
 
-router.post('/contentful-webhook/indexEvent/:data', (req, res)=>{
+router.post('/contentful-webhook/indexArticle/:data', (req, res)=>{
   const objectID = req.body.id;
   const title  = req.body.title;
   const richText  = req.body.richText;
-  const localisation  = req.body.localisation;
+  const tags  = req.body.tags;
+  const author  = req.body.author;
+  const createdDate  = req.body.createdDate;
 
-  const object = { objectID: objectID, title, richText, localisation/* autres champs */ };
+  const object = { objectID: objectID, title, richText, tags, author, createdDate/* autres champs */ };
   if (req.body) {
     indexEvent.saveObject(object)
       .then(content => {
