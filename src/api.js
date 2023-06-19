@@ -14,7 +14,7 @@ const client = algoliasearch('X3LOXZO0EA', algoliaApiKey);
 
 // Spécifiez le nom de l'index dans lequel vous souhaitez indexer vos projets
 const index = client.initIndex('dev_JIBOIANA');
-const indexEvent = client.initIndex('dev_JiboianaEvent');
+const indexArticle = client.initIndex('dev_JiboianaArticle');
 router.get("/", (req, res) => {
   res.json({
     hello: "Welcome I use this small app as webhook handler"
@@ -55,7 +55,7 @@ router.post('/contentful-webhook/indexArticle/:data', (req, res)=>{
 
   const object = { objectID: objectID, title, richText, tags, author, createdDate/* autres champs */ };
   if (req.body) {
-    indexEvent.saveObject(object)
+    indexArticle.saveObject(object)
       .then(content => {
         console.log('Objet indexé avec succès :', content);
         res.sendStatus(200);
