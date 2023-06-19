@@ -48,12 +48,12 @@ router.post('/contentful-webhook/indexProject/:data', (req, res)=>{
 router.post('/contentful-webhook/indexArticle/:data', (req, res)=>{
   const objectID = req.body.id;
   const title  = req.body.title;
-  const richText  = req.body.richText;
+  const articleText  = req.body.articleText;
   const tags  = req.body.tags;
   const author  = req.body.author;
   const createdDate  = req.body.createdDate;
 
-  const object = { objectID: objectID, title, richText, tags, author, createdDate/* autres champs */ };
+  const object = { objectID: objectID, title, articleText, tags, author, createdDate/* autres champs */ };
   if (req.body) {
     indexArticle.saveObject(object)
       .then(content => {
